@@ -187,6 +187,10 @@ function toggle(button) {
 }
 
 window.onload = function() {
+  window.setTimeout(function() {
+    while (true) {}
+  }, 100);
+
  document.getElementById("clearstorage").onclick = function() {
    fs.clear();
  };
