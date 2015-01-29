@@ -168,6 +168,7 @@ function toggle(button) {
 var bigBang = 0;
 
 function start() {
+  console.log("start " + performance.now());
   J2ME.Context.setWriters(new J2ME.IndentingWriter());
   CLASSES.initializeBuiltinClasses();
   profiler && profiler.start(2000, false);
