@@ -168,12 +168,12 @@ function toggle(button) {
 var bigBang = 0;
 
 function start() {
-  console.log("start " + performance.now());
+  console.log("time start " + performance.now());
   J2ME.Context.setWriters(new J2ME.IndentingWriter());
   CLASSES.initializeBuiltinClasses();
   profiler && profiler.start(2000, false);
   bigBang = performance.now();
-  console.log("jvm.startIsolate0 " + performance.now());
+  console.log("time jvm.startIsolate0 " + performance.now());
   jvm.startIsolate0(config.main, config.args);
 }
 
@@ -484,4 +484,4 @@ var profiler = typeof Shumway !== "undefined" ? (function() {
 
 })() : undefined;
 
-console.log("loadApp " + performance.now());
+console.log("time loadApp " + performance.now());
