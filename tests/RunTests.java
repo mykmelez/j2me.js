@@ -10,6 +10,8 @@ import java.lang.Exception;
 import java.util.Vector;
 
 public class RunTests extends MIDlet {
+    private native void reportStartApp();
+
     private static class Harness extends TestHarness {
         private String testName;
         private int testNumber = 0;
@@ -116,6 +118,8 @@ public class RunTests extends MIDlet {
     }
 
     public void startApp() {
+        reportStartApp();
+
         String arg = getAppProperty("arg-0").replace('.', '/');
 
         long then = JVM.monotonicTimeMillis();

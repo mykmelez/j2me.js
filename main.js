@@ -172,6 +172,7 @@ function start() {
   CLASSES.initializeBuiltinClasses();
   profiler && profiler.start(2000, false);
   bigBang = performance.now();
+  console.log("jvm.startIsolate0 " + performance.now());
   jvm.startIsolate0(config.main, config.args);
 }
 
@@ -481,3 +482,5 @@ var profiler = typeof Shumway !== "undefined" ? (function() {
   return new Profiler();
 
 })() : undefined;
+
+console.log("loadApp " + performance.now());

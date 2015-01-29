@@ -90,6 +90,7 @@ var currentlyFocusedTextEditor;
     };
 
     Native["com/sun/midp/lcdui/DisplayDevice.gainedForeground0.(II)V"] = function(hardwareId, displayId) {
+        console.log("DisplayDevice.gainedForeground0 " + performance.now());
         document.getElementById("splash-screen").style.display = "none";
         var d = NativeDisplays.get(displayId);
         setFullScreen(d.fullScreen);
