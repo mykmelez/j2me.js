@@ -44,6 +44,7 @@ var CompiledMethodCache = (function() {
           cache.set(request.result[i][KEY_PATH], request.result[i]);
         }
         DEBUG && debug("restore complete: " + count + " methods in " + (performance.now() - then) + "ms");
+        console.log("time restore compiled method cache " + performance.now());
         resolve();
       };
     }));

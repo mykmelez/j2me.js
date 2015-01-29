@@ -52,5 +52,7 @@ var initFS = new Promise(function(resolve, reject) {
     }));
   });
 
-  return Promise.all(filePromises);
+  return Promise.all(filePromises).then(function() {
+    console.log("time initFS " + performance.now());
+  });
 });
