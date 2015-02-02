@@ -71,15 +71,19 @@ Native["gnu/testlet/vm/NativeTest.dumbPipe.()Z"] = function() {
 };
 
 Native["com/nokia/mid/ui/TestVirtualKeyboard.hideKeyboard.()V"] = function() {
-  DumbPipe.open("hideKeyboard", null, function(message) {});
+  window.dispatchEvent(new Event("keyboardHidden"));
 };
 
 Native["com/nokia/mid/ui/TestVirtualKeyboard.showKeyboard.()V"] = function() {
-  DumbPipe.open("showKeyboard", null, function(message) {});
+  window.dispatchEvent(new Event("keyboardShown"));
 };
 
 Native["javax/microedition/lcdui/TestAlert.isTextEditorReallyFocused.()Z"] = function() {
-  return currentlyFocusedTextEditor.textEditor.focused ? 1 : 0;
+  return (currentlyFocusedTextEditor && currentlyFocusedTextEditor.focused) ? 1 : 0;
+};
+
+Native["javax/microedition/lcdui/TestTextEditorFocus.isTextEditorReallyFocused.(Lcom/nokia/mid/ui/TextEditor;)Z"] = function(textEditor) {
+  return (currentlyFocusedTextEditor == textEditor.textEditor && currentlyFocusedTextEditor.focused) ? 1 : 0;
 };
 
 Native["gnu/testlet/TestHarness.getNumDifferingPixels.(Ljava/lang/String;)I"] = function(pathStr) {

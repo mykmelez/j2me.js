@@ -45,19 +45,31 @@
     }
 
     this.levelName = levelName;
-    this.ctx = $ ? $.ctx : null;
+    this.ctx = typeof $ !== "undefined" && $ ? $.ctx : null;
     this.logLevel = LOG_LEVELS[levelName];
     this.args = args;
     this.time = performance.now() - startTime;
   }
 
+  function padRight(str, c, n) {
+    var length = str.length;
+    if (!c || length >= n) {
+      return str;
+    }
+    var max = (n - length) / c.length;
+    for (var i = 0; i < max; i++) {
+      str += c;
+    }
+    return str;
+  }
+
   LogItem.prototype = {
     get messagePrefix() {
-      var s = J2ME.Context.currentContextPrefix();
+      var s = typeof J2ME !== "undefined" ? J2ME.Context.currentContextPrefix() : "";
       if (false) {
         s = this.time.toFixed(2) + " " + s;
       }
-      return s.toString().padRight(" ", 4) + " | ";
+      return padRight(s.toString(), " ", 4) + " | ";
     },
 
     get message() {
@@ -167,7 +179,7 @@
     push: function(item) {
       if (item.matchesCurrentFilters()) {
         this.flush(); // Preserve order w/r/t console.print().
-        windowConsole[item.levelName].apply(windowConsole, item.args);
+        windowConsole[item.levelName].apply(windowConsole, [item.message]);
       }
     },
 
@@ -190,7 +202,7 @@
   NativeConsole.prototype = {
     push: function(item) {
       if (item.matchesCurrentFilters()) {
-        dumpLine(item.message);
+        dump(item.message + "\n");
       }
     }
   };

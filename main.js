@@ -177,7 +177,9 @@ function start() {
   jvm.startIsolate0(config.main, config.args);
 }
 
-Promise.all(loadingPromises).then(start);
+Promise.all(loadingPromises).then(start, function (reason) {
+  console.error("Loading failed: \"" + reason + "\"");
+});
 
 document.getElementById("start").onclick = function() {
   start();
@@ -224,10 +226,6 @@ window.onload = function() {
  document.getElementById("clearCompiledMethodCache").onclick = function() {
    CompiledMethodCache.clear().then(function() { console.log("cleared compiled method cache") });
  };
- document.getElementById("trace").onclick = function() {
-   VM.DEBUG = !VM.DEBUG;
-   toggle(this);
- };
  document.getElementById("printAllExceptions").onclick = function() {
    VM.DEBUG_PRINT_ALL_EXCEPTIONS = !VM.DEBUG_PRINT_ALL_EXCEPTIONS;
    toggle(this);
@@ -248,7 +246,8 @@ window.onload = function() {
     el.textContent = numberWithCommas(J2ME.interpreterCount);
 
     var el = document.getElementById("compiledCount");
-    el.textContent = numberWithCommas(J2ME.compiledCount);
+    el.textContent = numberWithCommas(J2ME.compiledMethodCount) + " / " +
+                     numberWithCommas(J2ME.cachedMethodCount);
 
     var el = document.getElementById("onStackReplacementCount");
     el.textContent = numberWithCommas(J2ME.onStackReplacementCount);
