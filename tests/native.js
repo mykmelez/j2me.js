@@ -150,3 +150,7 @@ Native["javax/microedition/media/TestAudioRecorder.convert3gpToAmr.([B)[B"] = fu
   result.set(converted);
   return result;
 };
+
+Native["RunTests.reportStartApp.()V"] = function() {
+  console.log("time RunTests.reportStartApp " + performance.now());
+}
