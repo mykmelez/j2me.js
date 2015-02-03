@@ -68,5 +68,6 @@ Native["com/nokia/mid/s40/bg/BGUtils.waitUserInteraction.()V"] = function() {
   }).then(function() {
     document.getElementById("splash-screen").style.display = "block";
     document.getElementById("background-screen").style.display = "none";
+    console.log("time start FG MIDlet: " + performance.now());
   }));
 };
