@@ -49,17 +49,17 @@ module J2ME {
   /**
    * Turns on just-in-time compilation of methods.
    */
-  export var enableRuntimeCompilation = true;
+  export var enableRuntimeCompilation = false;
 
   /**
    * Turns on onStackReplacement
    */
-  export var enableOnStackReplacement = true;
+  export var enableOnStackReplacement = false;
 
   /**
    * Turns on caching of JIT-compiled methods.
    */
-  export var enableCompiledMethodCache = true && typeof CompiledMethodCache !== "undefined";
+  export var enableCompiledMethodCache = false && typeof CompiledMethodCache !== "undefined";
 
   /**
    * Traces method execution.

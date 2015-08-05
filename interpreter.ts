@@ -228,9 +228,9 @@ module J2ME {
 
     // We don't want to optimize methods for interpretation if we're going to be using the JIT until
     // we teach the Baseline JIT about the new bytecodes.
-    if (!enableRuntimeCompilation && !frame.methodInfo.isOptimized && frame.methodInfo.stats.bytecodeCount > 100) {
-      optimizeMethodBytecode(frame.methodInfo);
-    }
+    // if (!enableRuntimeCompilation && !frame.methodInfo.isOptimized && frame.methodInfo.stats.bytecodeCount > 100) {
+    //   optimizeMethodBytecode(frame.methodInfo);
+    // }
 
     mi.stats.interpreterCallCount ++;
 
