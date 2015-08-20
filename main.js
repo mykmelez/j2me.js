@@ -583,3 +583,7 @@ var profiler = profile === 1 ? (function() {
   return new Profiler();
 
 })() : undefined;
+
+window.setInterval(function() {
+  console.log(J2ME.getFreeMemory());
+}, 500);
